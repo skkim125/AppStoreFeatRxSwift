@@ -19,4 +19,31 @@ extension UIViewController {
         
         present(alert, animated: true)
     }
+    
+    func navigationLargeTitleModeOn() {
+        navigationController?.navigationBar.rx.prefersLargeTitles.onNext(true)
+        navigationItem.rx.largeTitleDisplayMode.onNext(.always)
+    }
+    
+    func navigationLargeTitleModeOff() {
+        navigationController?.navigationBar.rx.prefersLargeTitles.onNext(false)
+        navigationItem.rx.largeTitleDisplayMode.onNext(.never)
+    }
+    
+    func configureNavigationBarDefaultAppearance() {
+        let navigationBar = navigationController?.navigationBar
+        let navigationBarAppearance = UINavigationBarAppearance()
+        navigationBarAppearance.backgroundColor = .systemBackground
+        navigationBarAppearance.shadowColor = .clear
+        navigationBar?.scrollEdgeAppearance = navigationBarAppearance
+    }
+    
+    func configureNavigationBarSearchAppearance() {
+        let navigationBar = navigationController?.navigationBar
+        let navigationBarAppearance = UINavigationBarAppearance()
+        
+        navigationBarAppearance.configureWithOpaqueBackground()
+        navigationBar?.scrollEdgeAppearance = navigationBarAppearance
+        navigationBar?.compactScrollEdgeAppearance = navigationBarAppearance
+    }
 }

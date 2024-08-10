@@ -6,42 +6,18 @@
 //
 
 import UIKit
-import RxSwift
-import RxCocoa
-
-import UIKit
 import SnapKit
 import RxSwift
 import RxCocoa
 
 final class SearchViewController: UIViewController {
     private lazy var searchviewcontroller = UISearchController(searchResultsController: nil)
-    private lazy var collectionView = {
-        let cv = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout())
+    private lazy var searchResultCollectionView = {
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout.searchResultCollectionViewLayout())
         cv.register(SearchCollectionViewCell.self, forCellWithReuseIdentifier: SearchCollectionViewCell.id)
         
         return cv
     }()
-    
-    private func collectionViewLayout() -> UICollectionViewLayout {
-        
-        let size = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
-        
-        let item = NSCollectionLayoutItem(layoutSize: size)
-        
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(320))
-        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
-        group.interItemSpacing = .fixed(10)
-        
-        let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 5)
-        section.interGroupSpacing = 10
-        
-        let layout = UICollectionViewCompositionalLayout(section: section)
-        
-        
-        return layout
-    }
     
     let viewModel = SearchViewModel()
     let disposeBag = DisposeBag()
@@ -63,15 +39,16 @@ final class SearchViewController: UIViewController {
     private func configureNavigationBar() {
         navigationLargeTitleModeOn()
         configureSearchController()
+        configureNavigationBarDefaultAppearance()
         navigationItem.rx.title.onNext("검색")
         searchviewcontroller.searchBar.rx.placeholder.onNext("게임, 앱, 스토리 등")
     }
     
     private func configureHierarchy() {
-        view.addSubview(collectionView)
+        view.addSubview(searchResultCollectionView)
     }
     private func configureLayout() {
-        collectionView.snp.makeConstraints { make in
+        searchResultCollectionView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide)
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
             make.bottom.equalTo(view.safeAreaLayoutGuide)
@@ -87,10 +64,10 @@ final class SearchViewController: UIViewController {
             .withLatestFrom(viewModel.outputApplications)
             .bind(with: self) { owner, value in
                 if !value.isEmpty {
-                    owner.collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
+                    owner.searchResultCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
                 }
                 owner.configureNavigationBar()
-                owner.collectionView.rx.isHidden.onNext(true)
+                owner.searchResultCollectionView.rx.isHidden.onNext(true)
             }
             .disposed(by: disposeBag)
         
@@ -103,7 +80,7 @@ final class SearchViewController: UIViewController {
             .disposed(by: disposeBag)
         
         viewModel.outputApplications
-            .bind(to: collectionView.rx.items(cellIdentifier: SearchCollectionViewCell.id, cellType: SearchCollectionViewCell.self)) { item, value, cell in
+            .bind(to: searchResultCollectionView.rx.items(cellIdentifier: SearchCollectionViewCell.id, cellType: SearchCollectionViewCell.self)) { item, value, cell in
                 cell.configureCell(app: value)
             }
             .disposed(by: disposeBag)
@@ -111,17 +88,18 @@ final class SearchViewController: UIViewController {
         viewModel.outputScrollToTop
             .withLatestFrom(viewModel.outputApplicationsIsEmpty)
             .bind(with: self) { owner, isEmpty in
+                owner.configureNavigationBarSearchAppearance()
                 if !isEmpty {
-                    owner.collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
+                    owner.searchResultCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
                 }
             }
             .disposed(by: disposeBag)
         
-        collectionView.rx.itemSelected
+        searchResultCollectionView.rx.itemSelected
             .bind(to: viewModel.inputIndexPath)
             .disposed(by: disposeBag)
         
-        collectionView.rx.modelSelected(Application.self)
+        searchResultCollectionView.rx.modelSelected(Application.self)
             .bind(to: viewModel.inputModel)
             .disposed(by: disposeBag)
         
@@ -130,7 +108,7 @@ final class SearchViewController: UIViewController {
             .withUnretained(viewModel.outputSearchText)
             .map({ ("\($0.0)", $0.1) })
             .bind(with: self) { owner, value in
-                owner.collectionView.rx.isHidden.onNext(value.1)
+                owner.searchResultCollectionView.rx.isHidden.onNext(value.1)
                 if value.1 {
                     owner.showAlert(title: "\(value.0)에 대한 검색 결과가 없습니다.", message: nil)
                 }
@@ -145,22 +123,16 @@ final class SearchViewController: UIViewController {
             .disposed(by: disposeBag)
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        configureNavigationBarDefaultAppearance()
+    }
+    
     private func configureSearchController() {
         navigationItem.rx.searchController.onNext(searchviewcontroller)
         searchviewcontroller.searchBar.rx.searchBarStyle.onNext(.minimal)
         searchviewcontroller.searchBar.searchTextField.rx.returnKeyType.onNext(.search)
         searchviewcontroller.rx.hidesNavigationBarDuringPresentation.onNext(true)
-    }
-}
-
-extension SearchViewController {
-    func navigationLargeTitleModeOn() {
-        navigationController?.navigationBar.rx.prefersLargeTitles.onNext(true)
-        navigationItem.rx.largeTitleDisplayMode.onNext(.always)
-    }
-    
-    func navigationLargeTitleModeOff() {
-        navigationController?.navigationBar.rx.prefersLargeTitles.onNext(false)
-        navigationItem.rx.largeTitleDisplayMode.onNext(.never)
     }
 }

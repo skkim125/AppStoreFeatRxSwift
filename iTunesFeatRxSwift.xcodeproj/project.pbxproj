@@ -29,6 +29,7 @@
 		040311A12C67BEAD004CBB26 /* ScreenshotCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040311A02C67BEAD004CBB26 /* ScreenshotCollectionViewCell.swift */; };
 		040311A52C67BEF2004CBB26 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040311A42C67BEF2004CBB26 /* SearchViewModel.swift */; };
 		040311A82C67BF78004CBB26 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040311A72C67BF78004CBB26 /* UIViewController+Extension.swift */; };
+		040311AA2C67C211004CBB26 /* UICollectionViewLayout+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040311A92C67C211004CBB26 /* UICollectionViewLayout+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		040311A02C67BEAD004CBB26 /* ScreenshotCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotCollectionViewCell.swift; sourceTree = "<group>"; };
 		040311A42C67BEF2004CBB26 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		040311A72C67BF78004CBB26 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		040311A92C67C211004CBB26 /* UICollectionViewLayout+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewLayout+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				040311A72C67BF78004CBB26 /* UIViewController+Extension.swift */,
+				040311A92C67C211004CBB26 /* UICollectionViewLayout+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -253,6 +256,7 @@
 				040311A52C67BEF2004CBB26 /* SearchViewModel.swift in Sources */,
 				040311872C67A9FC004CBB26 /* MainTabViewController.swift in Sources */,
 				040311972C67BB0A004CBB26 /* ITunesAPI.swift in Sources */,
+				040311AA2C67C211004CBB26 /* UICollectionViewLayout+Extension.swift in Sources */,
 				040311672C67A8CD004CBB26 /* AppDelegate.swift in Sources */,
 				040311922C67B4EA004CBB26 /* APIKey.swift in Sources */,
 				040311692C67A8CD004CBB26 /* SceneDelegate.swift in Sources */,
