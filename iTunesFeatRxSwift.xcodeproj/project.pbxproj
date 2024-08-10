@@ -30,6 +30,8 @@
 		040311A52C67BEF2004CBB26 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040311A42C67BEF2004CBB26 /* SearchViewModel.swift */; };
 		040311A82C67BF78004CBB26 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040311A72C67BF78004CBB26 /* UIViewController+Extension.swift */; };
 		040311AA2C67C211004CBB26 /* UICollectionViewLayout+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040311A92C67C211004CBB26 /* UICollectionViewLayout+Extension.swift */; };
+		040311AC2C67C4AE004CBB26 /* ApplicationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040311AB2C67C4AE004CBB26 /* ApplicationDetailViewController.swift */; };
+		040311AE2C67C4D6004CBB26 /* ApplicationDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040311AD2C67C4D6004CBB26 /* ApplicationDetailViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +54,8 @@
 		040311A42C67BEF2004CBB26 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		040311A72C67BF78004CBB26 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		040311A92C67C211004CBB26 /* UICollectionViewLayout+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewLayout+Extension.swift"; sourceTree = "<group>"; };
+		040311AB2C67C4AE004CBB26 /* ApplicationDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationDetailViewController.swift; sourceTree = "<group>"; };
+		040311AD2C67C4D6004CBB26 /* ApplicationDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationDetailViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,9 +100,9 @@
 				040311682C67A8CD004CBB26 /* SceneDelegate.swift */,
 				040311A62C67BF67004CBB26 /* Extension */,
 				040311932C67BAE6004CBB26 /* View */,
+				040311A32C67BEE7004CBB26 /* ViewModel */,
 				0403119B2C67BB62004CBB26 /* Network */,
 				0403116F2C67A8CE004CBB26 /* Assets.xcassets */,
-				040311A32C67BEE7004CBB26 /* ViewModel */,
 				040311712C67A8CE004CBB26 /* LaunchScreen.storyboard */,
 				040311742C67A8CE004CBB26 /* Info.plist */,
 				040311912C67B4EA004CBB26 /* APIKey.swift */,
@@ -112,6 +116,7 @@
 				040311862C67A9FC004CBB26 /* MainTabViewController.swift */,
 				0403116A2C67A8CD004CBB26 /* ViewController.swift */,
 				040311882C67AA11004CBB26 /* SearchViewController.swift */,
+				040311AB2C67C4AE004CBB26 /* ApplicationDetailViewController.swift */,
 				040311A22C67BED6004CBB26 /* Cell */,
 			);
 			path = View;
@@ -147,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				040311A42C67BEF2004CBB26 /* SearchViewModel.swift */,
+				040311AD2C67C4D6004CBB26 /* ApplicationDetailViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -254,9 +260,11 @@
 				0403119F2C67BE93004CBB26 /* SearchCollectionViewCell.swift in Sources */,
 				040311A12C67BEAD004CBB26 /* ScreenshotCollectionViewCell.swift in Sources */,
 				040311A52C67BEF2004CBB26 /* SearchViewModel.swift in Sources */,
+				040311AC2C67C4AE004CBB26 /* ApplicationDetailViewController.swift in Sources */,
 				040311872C67A9FC004CBB26 /* MainTabViewController.swift in Sources */,
 				040311972C67BB0A004CBB26 /* ITunesAPI.swift in Sources */,
 				040311AA2C67C211004CBB26 /* UICollectionViewLayout+Extension.swift in Sources */,
+				040311AE2C67C4D6004CBB26 /* ApplicationDetailViewModel.swift in Sources */,
 				040311672C67A8CD004CBB26 /* AppDelegate.swift in Sources */,
 				040311922C67B4EA004CBB26 /* APIKey.swift in Sources */,
 				040311692C67A8CD004CBB26 /* SceneDelegate.swift in Sources */,

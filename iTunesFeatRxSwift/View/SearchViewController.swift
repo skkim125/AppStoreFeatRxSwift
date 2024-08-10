@@ -121,6 +121,16 @@ final class SearchViewController: UIViewController {
                 owner.searchviewcontroller.searchBar.rx.text.onNext(nil)
             }
             .disposed(by: disposeBag)
+        
+        viewModel.outputMoveAppDetail
+            .bind(with: self) { owner, value in
+                let vc = ApplicationDetailViewController()
+                vc.viewModel.outputApplication.onNext(value.1)
+                vc.configureView(app: value.1)
+                
+                owner.navigationController?.pushViewController(vc, animated: true)
+            }
+            .disposed(by: disposeBag)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
