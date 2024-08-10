@@ -18,6 +18,8 @@
 		040311852C67A9B7004CBB26 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 040311842C67A9B7004CBB26 /* Kingfisher */; };
 		040311872C67A9FC004CBB26 /* MainTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040311862C67A9FC004CBB26 /* MainTabViewController.swift */; };
 		040311892C67AA11004CBB26 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040311882C67AA11004CBB26 /* SearchViewController.swift */; };
+		0403118C2C67AB1C004CBB26 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 0403118B2C67AB1C004CBB26 /* RxCocoa */; };
+		0403118E2C67AB1C004CBB26 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0403118D2C67AB1C004CBB26 /* RxSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,8 +39,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0403118E2C67AB1C004CBB26 /* RxSwift in Frameworks */,
 				040311852C67A9B7004CBB26 /* Kingfisher in Frameworks */,
 				040311822C67A9B0004CBB26 /* SnapKit in Frameworks */,
+				0403118C2C67AB1C004CBB26 /* RxCocoa in Frameworks */,
 				0403117C2C67A99F004CBB26 /* Alamofire in Frameworks */,
 				0403117F2C67A9A7004CBB26 /* IQKeyboardManagerSwift in Frameworks */,
 			);
@@ -99,6 +103,8 @@
 				0403117E2C67A9A7004CBB26 /* IQKeyboardManagerSwift */,
 				040311812C67A9B0004CBB26 /* SnapKit */,
 				040311842C67A9B7004CBB26 /* Kingfisher */,
+				0403118B2C67AB1C004CBB26 /* RxCocoa */,
+				0403118D2C67AB1C004CBB26 /* RxSwift */,
 			);
 			productName = iTunesFeatRxSwift;
 			productReference = 040311632C67A8CD004CBB26 /* iTunesFeatRxSwift.app */;
@@ -133,6 +139,7 @@
 				0403117D2C67A9A7004CBB26 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 				040311802C67A9B0004CBB26 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				040311832C67A9B7004CBB26 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				0403118A2C67AB1C004CBB26 /* XCRemoteSwiftPackageReference "RxSwift" */,
 			);
 			productRefGroup = 040311642C67A8CD004CBB26 /* Products */;
 			projectDirPath = "";
@@ -419,6 +426,14 @@
 				minimumVersion = 7.12.0;
 			};
 		};
+		0403118A2C67AB1C004CBB26 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.7.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -441,6 +456,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 040311832C67A9B7004CBB26 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		0403118B2C67AB1C004CBB26 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0403118A2C67AB1C004CBB26 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		0403118D2C67AB1C004CBB26 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0403118A2C67AB1C004CBB26 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

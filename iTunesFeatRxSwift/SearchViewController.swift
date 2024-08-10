@@ -6,8 +6,12 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 final class SearchViewController: UIViewController {
+    private let searchController = UISearchController(searchResultsController: nil)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -17,9 +21,22 @@ final class SearchViewController: UIViewController {
     }
     
     func configureNavigationBar() {
-        navigationItem.title = "게임, 앱, 스토리 등"
+        navigationLargeTitleModeOn()
+        configureSearchController()
+        navigationItem.rx.title.onNext("검색")
+        searchController.searchBar.rx.placeholder.onNext("게임, 앱, 스토리 등")
+    }
+    
+    private func navigationLargeTitleModeOn() {
+        navigationItem.title = "검색"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.largeTitleDisplayMode = .always
     }
-
+    
+    private func configureSearchController() {
+        navigationItem.rx.searchController.onNext(searchController)
+        searchController.searchBar.rx.searchBarStyle.onNext(.minimal)
+        searchController.searchBar.searchTextField.rx.returnKeyType.onNext(.search)
+        searchController.rx.hidesNavigationBarDuringPresentation.onNext(true)
+    }
 }
