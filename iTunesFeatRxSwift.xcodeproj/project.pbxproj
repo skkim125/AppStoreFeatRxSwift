@@ -25,6 +25,10 @@
 		040311952C67BB03004CBB26 /* ITunes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040311942C67BB03004CBB26 /* ITunes.swift */; };
 		040311972C67BB0A004CBB26 /* ITunesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040311962C67BB0A004CBB26 /* ITunesAPI.swift */; };
 		0403119A2C67BB5B004CBB26 /* ITunesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040311992C67BB5B004CBB26 /* ITunesRouter.swift */; };
+		0403119F2C67BE93004CBB26 /* SearchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0403119E2C67BE93004CBB26 /* SearchCollectionViewCell.swift */; };
+		040311A12C67BEAD004CBB26 /* ScreenshotCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040311A02C67BEAD004CBB26 /* ScreenshotCollectionViewCell.swift */; };
+		040311A52C67BEF2004CBB26 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040311A42C67BEF2004CBB26 /* SearchViewModel.swift */; };
+		040311A82C67BF78004CBB26 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040311A72C67BF78004CBB26 /* UIViewController+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +46,10 @@
 		040311942C67BB03004CBB26 /* ITunes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITunes.swift; sourceTree = "<group>"; };
 		040311962C67BB0A004CBB26 /* ITunesAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITunesAPI.swift; sourceTree = "<group>"; };
 		040311992C67BB5B004CBB26 /* ITunesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITunesRouter.swift; sourceTree = "<group>"; };
+		0403119E2C67BE93004CBB26 /* SearchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollectionViewCell.swift; sourceTree = "<group>"; };
+		040311A02C67BEAD004CBB26 /* ScreenshotCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotCollectionViewCell.swift; sourceTree = "<group>"; };
+		040311A42C67BEF2004CBB26 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		040311A72C67BF78004CBB26 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,13 +89,14 @@
 		040311652C67A8CD004CBB26 /* iTunesFeatRxSwift */ = {
 			isa = PBXGroup;
 			children = (
+				040311982C67BB4B004CBB26 /* Model */,
 				040311662C67A8CD004CBB26 /* AppDelegate.swift */,
 				040311682C67A8CD004CBB26 /* SceneDelegate.swift */,
-				040311862C67A9FC004CBB26 /* MainTabViewController.swift */,
+				040311A62C67BF67004CBB26 /* Extension */,
 				040311932C67BAE6004CBB26 /* View */,
-				0403116F2C67A8CE004CBB26 /* Assets.xcassets */,
-				040311982C67BB4B004CBB26 /* Model */,
 				0403119B2C67BB62004CBB26 /* Network */,
+				0403116F2C67A8CE004CBB26 /* Assets.xcassets */,
+				040311A32C67BEE7004CBB26 /* ViewModel */,
 				040311712C67A8CE004CBB26 /* LaunchScreen.storyboard */,
 				040311742C67A8CE004CBB26 /* Info.plist */,
 				040311912C67B4EA004CBB26 /* APIKey.swift */,
@@ -98,8 +107,10 @@
 		040311932C67BAE6004CBB26 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				040311862C67A9FC004CBB26 /* MainTabViewController.swift */,
 				0403116A2C67A8CD004CBB26 /* ViewController.swift */,
 				040311882C67AA11004CBB26 /* SearchViewController.swift */,
+				040311A22C67BED6004CBB26 /* Cell */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -119,6 +130,31 @@
 				040311962C67BB0A004CBB26 /* ITunesAPI.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		040311A22C67BED6004CBB26 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				0403119E2C67BE93004CBB26 /* SearchCollectionViewCell.swift */,
+				040311A02C67BEAD004CBB26 /* ScreenshotCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		040311A32C67BEE7004CBB26 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				040311A42C67BEF2004CBB26 /* SearchViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		040311A62C67BF67004CBB26 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				040311A72C67BF78004CBB26 /* UIViewController+Extension.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -208,9 +244,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				040311892C67AA11004CBB26 /* SearchViewController.swift in Sources */,
+				040311A82C67BF78004CBB26 /* UIViewController+Extension.swift in Sources */,
 				0403116B2C67A8CD004CBB26 /* ViewController.swift in Sources */,
 				040311952C67BB03004CBB26 /* ITunes.swift in Sources */,
 				0403119A2C67BB5B004CBB26 /* ITunesRouter.swift in Sources */,
+				0403119F2C67BE93004CBB26 /* SearchCollectionViewCell.swift in Sources */,
+				040311A12C67BEAD004CBB26 /* ScreenshotCollectionViewCell.swift in Sources */,
+				040311A52C67BEF2004CBB26 /* SearchViewModel.swift in Sources */,
 				040311872C67A9FC004CBB26 /* MainTabViewController.swift in Sources */,
 				040311972C67BB0A004CBB26 /* ITunesAPI.swift in Sources */,
 				040311672C67A8CD004CBB26 /* AppDelegate.swift in Sources */,
