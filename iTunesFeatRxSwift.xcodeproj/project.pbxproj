@@ -20,6 +20,8 @@
 		040311892C67AA11004CBB26 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040311882C67AA11004CBB26 /* SearchViewController.swift */; };
 		0403118C2C67AB1C004CBB26 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 0403118B2C67AB1C004CBB26 /* RxCocoa */; };
 		0403118E2C67AB1C004CBB26 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0403118D2C67AB1C004CBB26 /* RxSwift */; };
+		040311902C67B486004CBB26 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 0403118F2C67B486004CBB26 /* .gitignore */; };
+		040311922C67B4EA004CBB26 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040311912C67B4EA004CBB26 /* APIKey.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		040311742C67A8CE004CBB26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		040311862C67A9FC004CBB26 /* MainTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabViewController.swift; sourceTree = "<group>"; };
 		040311882C67AA11004CBB26 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		0403118F2C67B486004CBB26 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		040311912C67B4EA004CBB26 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +58,7 @@
 		0403115A2C67A8CD004CBB26 = {
 			isa = PBXGroup;
 			children = (
+				0403118F2C67B486004CBB26 /* .gitignore */,
 				040311652C67A8CD004CBB26 /* iTunesFeatRxSwift */,
 				040311642C67A8CD004CBB26 /* Products */,
 			);
@@ -78,6 +83,7 @@
 				0403116F2C67A8CE004CBB26 /* Assets.xcassets */,
 				040311712C67A8CE004CBB26 /* LaunchScreen.storyboard */,
 				040311742C67A8CE004CBB26 /* Info.plist */,
+				040311912C67B4EA004CBB26 /* APIKey.swift */,
 			);
 			path = iTunesFeatRxSwift;
 			sourceTree = "<group>";
@@ -156,6 +162,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				040311702C67A8CE004CBB26 /* Assets.xcassets in Resources */,
+				040311902C67B486004CBB26 /* .gitignore in Resources */,
 				040311732C67A8CE004CBB26 /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -171,6 +178,7 @@
 				0403116B2C67A8CD004CBB26 /* ViewController.swift in Sources */,
 				040311872C67A9FC004CBB26 /* MainTabViewController.swift in Sources */,
 				040311672C67A8CD004CBB26 /* AppDelegate.swift in Sources */,
+				040311922C67B4EA004CBB26 /* APIKey.swift in Sources */,
 				040311692C67A8CD004CBB26 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
