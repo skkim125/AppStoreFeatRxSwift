@@ -22,6 +22,9 @@
 		0403118E2C67AB1C004CBB26 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0403118D2C67AB1C004CBB26 /* RxSwift */; };
 		040311902C67B486004CBB26 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 0403118F2C67B486004CBB26 /* .gitignore */; };
 		040311922C67B4EA004CBB26 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040311912C67B4EA004CBB26 /* APIKey.swift */; };
+		040311952C67BB03004CBB26 /* ITunes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040311942C67BB03004CBB26 /* ITunes.swift */; };
+		040311972C67BB0A004CBB26 /* ITunesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040311962C67BB0A004CBB26 /* ITunesAPI.swift */; };
+		0403119A2C67BB5B004CBB26 /* ITunesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040311992C67BB5B004CBB26 /* ITunesRouter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +39,9 @@
 		040311882C67AA11004CBB26 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		0403118F2C67B486004CBB26 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		040311912C67B4EA004CBB26 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
+		040311942C67BB03004CBB26 /* ITunes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITunes.swift; sourceTree = "<group>"; };
+		040311962C67BB0A004CBB26 /* ITunesAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITunesAPI.swift; sourceTree = "<group>"; };
+		040311992C67BB5B004CBB26 /* ITunesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITunesRouter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,15 +83,42 @@
 			children = (
 				040311662C67A8CD004CBB26 /* AppDelegate.swift */,
 				040311682C67A8CD004CBB26 /* SceneDelegate.swift */,
-				0403116A2C67A8CD004CBB26 /* ViewController.swift */,
 				040311862C67A9FC004CBB26 /* MainTabViewController.swift */,
-				040311882C67AA11004CBB26 /* SearchViewController.swift */,
+				040311932C67BAE6004CBB26 /* View */,
 				0403116F2C67A8CE004CBB26 /* Assets.xcassets */,
+				040311982C67BB4B004CBB26 /* Model */,
+				0403119B2C67BB62004CBB26 /* Network */,
 				040311712C67A8CE004CBB26 /* LaunchScreen.storyboard */,
 				040311742C67A8CE004CBB26 /* Info.plist */,
 				040311912C67B4EA004CBB26 /* APIKey.swift */,
 			);
 			path = iTunesFeatRxSwift;
+			sourceTree = "<group>";
+		};
+		040311932C67BAE6004CBB26 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0403116A2C67A8CD004CBB26 /* ViewController.swift */,
+				040311882C67AA11004CBB26 /* SearchViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		040311982C67BB4B004CBB26 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				040311942C67BB03004CBB26 /* ITunes.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0403119B2C67BB62004CBB26 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				040311992C67BB5B004CBB26 /* ITunesRouter.swift */,
+				040311962C67BB0A004CBB26 /* ITunesAPI.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -176,7 +209,10 @@
 			files = (
 				040311892C67AA11004CBB26 /* SearchViewController.swift in Sources */,
 				0403116B2C67A8CD004CBB26 /* ViewController.swift in Sources */,
+				040311952C67BB03004CBB26 /* ITunes.swift in Sources */,
+				0403119A2C67BB5B004CBB26 /* ITunesRouter.swift in Sources */,
 				040311872C67A9FC004CBB26 /* MainTabViewController.swift in Sources */,
+				040311972C67BB0A004CBB26 /* ITunesAPI.swift in Sources */,
 				040311672C67A8CD004CBB26 /* AppDelegate.swift in Sources */,
 				040311922C67B4EA004CBB26 /* APIKey.swift in Sources */,
 				040311692C67A8CD004CBB26 /* SceneDelegate.swift in Sources */,
