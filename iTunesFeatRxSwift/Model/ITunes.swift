@@ -26,6 +26,7 @@ struct Application: Decodable {
     let currency: String // 통화단위
     let price: Double? // 가격
     let formattedPrice: String?
+    let version: String // 버전
     
     var convertPrice: Double {
         guard let price  = self.price else { return 0.00 }
