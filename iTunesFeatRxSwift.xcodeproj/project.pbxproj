@@ -32,6 +32,7 @@
 		040311AA2C67C211004CBB26 /* UICollectionViewLayout+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040311A92C67C211004CBB26 /* UICollectionViewLayout+Extension.swift */; };
 		040311AC2C67C4AE004CBB26 /* ApplicationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040311AB2C67C4AE004CBB26 /* ApplicationDetailViewController.swift */; };
 		040311AE2C67C4D6004CBB26 /* ApplicationDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040311AD2C67C4D6004CBB26 /* ApplicationDetailViewModel.swift */; };
+		040311B72C69EBA9004CBB26 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040311B62C69EBA9004CBB26 /* BaseViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		040311A92C67C211004CBB26 /* UICollectionViewLayout+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewLayout+Extension.swift"; sourceTree = "<group>"; };
 		040311AB2C67C4AE004CBB26 /* ApplicationDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationDetailViewController.swift; sourceTree = "<group>"; };
 		040311AD2C67C4D6004CBB26 /* ApplicationDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationDetailViewModel.swift; sourceTree = "<group>"; };
+		040311B62C69EBA9004CBB26 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,7 +100,7 @@
 				040311982C67BB4B004CBB26 /* Model */,
 				040311662C67A8CD004CBB26 /* AppDelegate.swift */,
 				040311682C67A8CD004CBB26 /* SceneDelegate.swift */,
-				040311A62C67BF67004CBB26 /* Extension */,
+				040311B52C69EB95004CBB26 /* Resource */,
 				040311932C67BAE6004CBB26 /* View */,
 				040311A32C67BEE7004CBB26 /* ViewModel */,
 				0403119B2C67BB62004CBB26 /* Network */,
@@ -164,6 +166,15 @@
 				040311A92C67C211004CBB26 /* UICollectionViewLayout+Extension.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		040311B52C69EB95004CBB26 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				040311B62C69EBA9004CBB26 /* BaseViewModel.swift */,
+				040311A62C67BF67004CBB26 /* Extension */,
+			);
+			path = Resource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -254,6 +265,7 @@
 			files = (
 				040311892C67AA11004CBB26 /* SearchViewController.swift in Sources */,
 				040311A82C67BF78004CBB26 /* UIViewController+Extension.swift in Sources */,
+				040311B72C69EBA9004CBB26 /* BaseViewModel.swift in Sources */,
 				0403116B2C67A8CD004CBB26 /* ViewController.swift in Sources */,
 				040311952C67BB03004CBB26 /* ITunes.swift in Sources */,
 				0403119A2C67BB5B004CBB26 /* ITunesRouter.swift in Sources */,
