@@ -60,72 +60,74 @@ final class SearchViewController: UIViewController {
     }
     
     private func bind() {
-        searchviewcontroller.searchBar.rx.cancelButtonClicked
-            .withLatestFrom(viewModel.outputApplications)
-            .bind(with: self) { owner, value in
-                if !value.isEmpty {
-                    owner.searchResultCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
-                }
-                owner.configureNavigationBar()
-                owner.searchResultCollectionView.rx.isHidden.onNext(true)
-            }
-            .disposed(by: disposeBag)
+        let searchText = PublishSubject<String>()
+        let searchButtonClicked = PublishSubject<Void>()
+        let indexPath = PublishSubject<IndexPath>()
+        let model = PublishSubject<Application>()
+        
+        let input = SearchViewModel.Input(searchText: searchText, searchButtonClicked: searchButtonClicked, indexPath: indexPath, model: model)
+        let output = viewModel.transform(input: input)
         
         searchviewcontroller.searchBar.rx.searchButtonClicked
-            .bind(to: viewModel.inputSearchButtonTap)
+            .bind(to: searchButtonClicked)
             .disposed(by: disposeBag)
         
         searchviewcontroller.searchBar.rx.text.orEmpty
-            .bind(to: viewModel.inputSearchText)
+            .bind(to: searchText)
             .disposed(by: disposeBag)
         
-        viewModel.outputApplications
+        searchResultCollectionView.rx.itemSelected
+            .bind(to: indexPath)
+            .disposed(by: disposeBag)
+        
+        searchResultCollectionView.rx.modelSelected(Application.self)
+            .bind(to: model)
+            .disposed(by: disposeBag)
+        
+        output.applications
             .bind(to: searchResultCollectionView.rx.items(cellIdentifier: SearchCollectionViewCell.id, cellType: SearchCollectionViewCell.self)) { item, value, cell in
                 cell.configureCell(app: value)
             }
             .disposed(by: disposeBag)
         
-        viewModel.outputScrollToTop
-            .withLatestFrom(viewModel.outputApplicationsIsEmpty)
+        output.applications
+            .map({ $0.isEmpty })
             .bind(with: self) { owner, isEmpty in
                 owner.configureNavigationBarSearchAppearance()
+                owner.searchResultCollectionView.rx.isHidden.onNext(isEmpty)
                 if !isEmpty {
-                    owner.searchResultCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
+                    owner.searchResultCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
+                } else {
+                    owner.showAlert(title: "검색 결과가 없습니다.", message: nil)
                 }
             }
             .disposed(by: disposeBag)
         
-        searchResultCollectionView.rx.itemSelected
-            .bind(to: viewModel.inputIndexPath)
-            .disposed(by: disposeBag)
-        
-        searchResultCollectionView.rx.modelSelected(Application.self)
-            .bind(to: viewModel.inputModel)
-            .disposed(by: disposeBag)
-        
-        Observable.zip(viewModel.outputApplicationsIsEmpty, viewModel.outputSearchText)
-            .bind(with: self) { owner, value in
-                if value.0 {
-                    owner.searchResultCollectionView.rx.isHidden.onNext(value.0)
-                    owner.showAlert(title: "\(value.1)에 대한 검색 결과가 없습니다.", message: nil)
-                }
-            }
-            .disposed(by: disposeBag)
-        
-        viewModel.outputTextIsEmptyShowAlert
+        output.showSearchTextIsEmptyAlert
             .bind(with: self) { owner, _ in
                 owner.showAlert(title: "한글자 이상 입력해주세요", message: nil)
                 owner.searchviewcontroller.searchBar.rx.text.onNext(nil)
             }
             .disposed(by: disposeBag)
         
-        viewModel.outputMoveAppDetail
+        output.appDetail
             .bind(with: self) { owner, value in
                 let vc = ApplicationDetailViewController()
                 vc.viewModel.outputApplication.onNext(value.1)
                 vc.configureView(app: value.1)
                 
                 owner.navigationController?.pushViewController(vc, animated: true)
+            }
+            .disposed(by: disposeBag)
+        
+        searchviewcontroller.searchBar.rx.cancelButtonClicked
+            .withLatestFrom(output.applications)
+            .bind(with: self) { owner, value in
+                if !value.isEmpty {
+                    owner.searchResultCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
+                }
+                owner.configureNavigationBar()
+                owner.searchResultCollectionView.rx.isHidden.onNext(true)
             }
             .disposed(by: disposeBag)
     }

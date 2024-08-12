@@ -8,61 +8,57 @@
 import Foundation
 import RxSwift
 
-final class SearchViewModel {
+final class SearchViewModel: BaseViewModel {
     private let iTunesAPI = ITunesAPI.shared
     let disposeBag = DisposeBag()
     
-    let inputSearchText = PublishSubject<String>()
-    let inputSearchButtonTap = PublishSubject<Void>()
-    let inputIndexPath = PublishSubject<IndexPath>()
-    let inputModel = PublishSubject<Application>()
+    struct Input {
+        let searchText: PublishSubject<String>
+        let searchButtonClicked: PublishSubject<Void>
+        let indexPath: PublishSubject<IndexPath>
+        let model: PublishSubject<Application>
+    }
     
-    let outputSearchText = PublishSubject<String>()
-    let outputNavigationTitle = PublishSubject<String>()
-    let outputApplications = PublishSubject<[Application]>()
-    let outputTextIsEmptyShowAlert = PublishSubject<Void>()
-    let outputResultIsEmptyShowAlert = PublishSubject<Void>()
-    let outputScrollToTop = PublishSubject<Void>()
-    let outputApplicationsIsEmpty = PublishSubject<Bool>()
-    let outputMoveAppDetail = PublishSubject<(IndexPath, Application)>()
+    struct Output {
+        let applications: PublishSubject<[Application]>
+        let lastText: PublishSubject<String>
+        let showSearchTextIsEmptyAlert: PublishSubject<Void>
+        let appDetail: PublishSubject<(IndexPath, Application)>
+    }
     
-    init() {
-        let text = inputSearchText
-            .map({ "\($0)" })
+    func transform(input: Input) -> Output {
+        let lastText = PublishSubject<String>()
+        let applications = PublishSubject<[Application]>()
+        let showSearchTextIsEmptyAlert = PublishSubject<Void>()
+        let appDetail = PublishSubject<(IndexPath, Application)>()
         
-        inputSearchButtonTap
-            .withLatestFrom(text) { _, text in
-                return ("\(text)", text.trimmingCharacters(in: .whitespaces).isEmpty)
+        input.searchButtonClicked
+            .withLatestFrom(input.searchText) { _, text in
+                return (text, !text.trimmingCharacters(in: .whitespaces).isEmpty)
             }
-            .subscribe(with: self) { owner, text in
-                if !text.1 {
-                    owner.outputSearchText.onNext(text.0)
-                    owner.outputNavigationTitle.onNext(text.0)
+            .bind(with: self) { owner, value in
+                if value.1 {
+                    lastText.onNext(value.0)
                 } else {
-                    owner.outputTextIsEmptyShowAlert.onNext(())
+                    showSearchTextIsEmptyAlert.onNext(())
                 }
             }
             .disposed(by: disposeBag)
         
-        outputSearchText
+        lastText
             .flatMap { self.iTunesAPI.calliTunes(router: .entity(term: $0)) }
             .bind(with: self) { owner, value in
-                owner.outputApplications.onNext(value)
-                owner.outputScrollToTop.onNext(())
+                applications.onNext(value)
             }
             .disposed(by: disposeBag)
         
-        outputApplications
-            .map({ $0.isEmpty })
-            .bind(with: self) { owner, isEmpty in
-                owner.outputApplicationsIsEmpty.onNext(isEmpty)
-            }
-            .disposed(by: disposeBag)
-        
-        Observable.zip(inputIndexPath, inputModel)
+        Observable.zip(input.indexPath, input.model)
             .bind(with: self) { owner, value in
-                owner.outputMoveAppDetail.onNext(value)
+                appDetail.onNext(value)
             }
             .disposed(by: disposeBag)
+        
+        return Output(applications: applications, lastText: lastText, showSearchTextIsEmptyAlert: showSearchTextIsEmptyAlert, appDetail: appDetail)
     }
+
 }

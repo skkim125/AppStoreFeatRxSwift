@@ -145,9 +145,10 @@ final class SearchCollectionViewCell: UICollectionViewCell {
     
     private func bind(app: Application) {
         var threeSs: [String] = []
-        for i in 0...2 {
-            threeSs.append(app.screenshotUrls[i])
-        }
+        let bounds = app.screenshotUrls.count > 3 ? 0..<3 : 0..<app.screenshotUrls.count
+            for i in bounds {
+                threeSs.append(app.screenshotUrls[i])
+            }
         
         let outputScreenshotUrls = BehaviorSubject(value: threeSs)
         
