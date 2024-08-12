@@ -23,6 +23,7 @@ final class SearchViewModel: BaseViewModel {
         let applications: PublishSubject<[Application]>
         let lastText: PublishSubject<String>
         let showSearchTextIsEmptyAlert: PublishSubject<Void>
+        let showErrorAlert: PublishSubject<Void>
         let appDetail: PublishSubject<(IndexPath, Application)>
     }
     
@@ -30,6 +31,7 @@ final class SearchViewModel: BaseViewModel {
         let lastText = PublishSubject<String>()
         let applications = PublishSubject<[Application]>()
         let showSearchTextIsEmptyAlert = PublishSubject<Void>()
+        let showErrorAlert = PublishSubject<Void>()
         let appDetail = PublishSubject<(IndexPath, Application)>()
         
         input.searchButtonClicked
@@ -46,7 +48,13 @@ final class SearchViewModel: BaseViewModel {
             .disposed(by: disposeBag)
         
         lastText
-            .flatMap { self.iTunesAPI.calliTunes(router: .entity(term: $0)) }
+            .flatMap { 
+                self.iTunesAPI.calliTunes(router: .entity(term: $0))
+                    .catch { error in
+                        showErrorAlert.onNext(())
+                        return Single<[Application]>.never()
+                    }
+            }
             .bind(with: self) { owner, value in
                 applications.onNext(value)
             }
@@ -58,7 +66,7 @@ final class SearchViewModel: BaseViewModel {
             }
             .disposed(by: disposeBag)
         
-        return Output(applications: applications, lastText: lastText, showSearchTextIsEmptyAlert: showSearchTextIsEmptyAlert, appDetail: appDetail)
+        return Output(applications: applications, lastText: lastText, showSearchTextIsEmptyAlert: showSearchTextIsEmptyAlert, showErrorAlert: showErrorAlert, appDetail: appDetail)
     }
 
 }

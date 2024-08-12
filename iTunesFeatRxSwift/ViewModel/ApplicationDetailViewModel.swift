@@ -8,9 +8,16 @@
 import Foundation
 import RxSwift
 
-final class ApplicationDetailViewModel {
+final class ApplicationDetailViewModel: BaseViewModel {
     var application: Application?
     let disposeBag = DisposeBag()
+    
+    struct Input { }
+    struct Output { }
+    
+    func transform(input: Input) -> Output {
+        return Output()
+    }
     
     let outputApplication = PublishSubject<Application>()
     

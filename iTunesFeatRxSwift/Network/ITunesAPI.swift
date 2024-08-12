@@ -13,33 +13,38 @@ final class ITunesAPI {
     static let shared = ITunesAPI()
     private init() { }
     
-    func calliTunes(router: ITunesRouter) -> Observable<[Application]> {
+    func calliTunes(router: ITunesRouter) -> Single<[Application]> {
         
-        let result = Observable<[Application]>.create { observer in
+        return Single<[Application]>.create { observer in
+            
             guard let url = URL(string: APIURL.ITunesURL) else {
-                observer.onError(APIError.urlError)
+                observer(.failure(APIError.urlError))
                 
                 return Disposables.create()
             }
             
-            AF.request(url, parameters: router.parameters).validate(statusCode: 200..<299).responseDecodable(of: ITunes.self) { response in
+            let request = AF.request(url, parameters: router.parameters).validate(statusCode: 200..<299).responseDecodable(of: ITunes.self) { response in
                 switch response.result {
                 case .success(let success):
-                    observer.onNext(success.results)
-                    observer.onCompleted()
+                    observer(.success(success.results))
                 case .failure(let error):
-                    observer.onError(error)
+                    guard let data = response.data else {
+                        return observer(.failure(APIError.dataNilError))
+                    }
+                    
+                    observer(.failure(APIError.responseError))
                 }
             }
-            
-            return Disposables.create()
+            return Disposables.create {
+                request.cancel()
+            }
         }
-        
-        return result
     }
 }
 
 enum APIError: Error {
     case urlError
+    case dataNilError
+    case decodingError
     case responseError
 }

@@ -120,6 +120,12 @@ final class SearchViewController: UIViewController {
             }
             .disposed(by: disposeBag)
         
+        output.showErrorAlert
+            .bind(with: self) { owner, _ in
+                owner.showAlert(title: "에러가 발생하였습니다.", message: nil)
+            }
+            .disposed(by: disposeBag)
+        
         searchviewcontroller.searchBar.rx.cancelButtonClicked
             .withLatestFrom(output.applications)
             .bind(with: self) { owner, value in
