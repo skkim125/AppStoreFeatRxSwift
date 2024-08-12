@@ -103,19 +103,16 @@ final class SearchViewController: UIViewController {
             .bind(to: viewModel.inputModel)
             .disposed(by: disposeBag)
         
-        viewModel.outputApplications
-            .map({ $0.isEmpty })
-            .withUnretained(viewModel.outputSearchText)
-            .map({ ("\($0.0)", $0.1) })
+        Observable.zip(viewModel.outputApplicationsIsEmpty, viewModel.outputSearchText)
             .bind(with: self) { owner, value in
-                owner.searchResultCollectionView.rx.isHidden.onNext(value.1)
-                if value.1 {
-                    owner.showAlert(title: "\(value.0)에 대한 검색 결과가 없습니다.", message: nil)
+                if value.0 {
+                    owner.searchResultCollectionView.rx.isHidden.onNext(value.0)
+                    owner.showAlert(title: "\(value.1)에 대한 검색 결과가 없습니다.", message: nil)
                 }
             }
             .disposed(by: disposeBag)
         
-        viewModel.outputShowAlert
+        viewModel.outputTextIsEmptyShowAlert
             .bind(with: self) { owner, _ in
                 owner.showAlert(title: "한글자 이상 입력해주세요", message: nil)
                 owner.searchviewcontroller.searchBar.rx.text.onNext(nil)

@@ -20,7 +20,8 @@ final class SearchViewModel {
     let outputSearchText = PublishSubject<String>()
     let outputNavigationTitle = PublishSubject<String>()
     let outputApplications = PublishSubject<[Application]>()
-    let outputShowAlert = PublishSubject<Void>()
+    let outputTextIsEmptyShowAlert = PublishSubject<Void>()
+    let outputResultIsEmptyShowAlert = PublishSubject<Void>()
     let outputScrollToTop = PublishSubject<Void>()
     let outputApplicationsIsEmpty = PublishSubject<Bool>()
     let outputMoveAppDetail = PublishSubject<(IndexPath, Application)>()
@@ -38,7 +39,7 @@ final class SearchViewModel {
                     owner.outputSearchText.onNext(text.0)
                     owner.outputNavigationTitle.onNext(text.0)
                 } else {
-                    owner.outputShowAlert.onNext(())
+                    owner.outputTextIsEmptyShowAlert.onNext(())
                 }
             }
             .disposed(by: disposeBag)

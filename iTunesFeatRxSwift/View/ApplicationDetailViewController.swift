@@ -73,6 +73,13 @@ final class ApplicationDetailViewController: UIViewController {
         
         return cv
     }()
+    private let descriptionLabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 14)
+        label.numberOfLines = 0
+        
+        return label
+    }()
     
     let disposeBag = DisposeBag()
     let viewModel = ApplicationDetailViewModel()
@@ -98,8 +105,7 @@ final class ApplicationDetailViewController: UIViewController {
         
         scrollView.addSubview(contentView)
         
-        
-        let views = [appImageView, applicationNameLabel, downloadButton, sellerNameLabel, releaseLabel, releaseVersionLabel, releaseDetailLabel, screenshotCollectionView]
+        let views = [appImageView, applicationNameLabel, downloadButton, sellerNameLabel, releaseLabel, releaseVersionLabel, releaseDetailLabel, screenshotCollectionView, descriptionLabel]
         
         views.forEach { subView in
             contentView.addSubview(subView)
@@ -163,9 +169,13 @@ final class ApplicationDetailViewController: UIViewController {
         
         screenshotCollectionView.snp.makeConstraints { make in
             make.top.equalTo(releaseDetailLabel.snp.bottom).offset(15)
-            make.leading.equalTo(appImageView)
-            make.trailing.equalToSuperview().inset(15)
-            make.height.equalTo(220)
+            make.horizontalEdges.equalTo(contentView)
+            make.height.equalTo(360)
+        }
+        
+        descriptionLabel.snp.makeConstraints { make in
+            make.top.equalTo(screenshotCollectionView.snp.bottom).offset(20)
+            make.horizontalEdges.equalTo(contentView).inset(15)
             make.bottom.equalTo(scrollView.snp.bottom).inset(10)
         }
     }
@@ -190,14 +200,12 @@ final class ApplicationDetailViewController: UIViewController {
         releaseDetailLabel.rx.text.onNext(app.releaseNotes)
         
         bind(app: app)
+        
+        descriptionLabel.rx.text.onNext(app.description)
     }
     
     private func bind(app: Application) {
-        var threeSs: [String] = []
-        for i in 0...2 {
-            threeSs.append(app.screenshotUrls[i])
-        }
-        let outputScreenshotUrls = BehaviorSubject(value: threeSs)
+        let outputScreenshotUrls = BehaviorSubject(value: app.screenshotUrls)
         
         outputScreenshotUrls
             .bind(to: screenshotCollectionView.rx.items(cellIdentifier: ScreenshotCollectionViewCell.id, cellType: ScreenshotCollectionViewCell.self)) { item, value, cell in

@@ -19,7 +19,7 @@ final class SearchCollectionViewCell: UICollectionViewCell {
     private let downloadButton = {
         let button = UIButton(configuration: .borderedProminent())
         var configuration = button.configuration
-        configuration?.baseBackgroundColor = .systemGray3
+        configuration?.baseBackgroundColor = .systemGray4
         configuration?.baseForegroundColor = .systemBlue
         configuration?.cornerStyle = .capsule
         
