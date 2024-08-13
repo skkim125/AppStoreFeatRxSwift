@@ -199,12 +199,12 @@ final class ApplicationDetailViewController: UIViewController {
         
         releaseDetailLabel.rx.text.onNext(app.releaseNotes)
         
-        bind(app: app)
+        configureScreenshotCollectionView(app: app)
         
         descriptionLabel.rx.text.onNext(app.description)
     }
     
-    private func bind(app: Application) {
+    private func configureScreenshotCollectionView(app: Application) {
         let outputScreenshotUrls = BehaviorSubject(value: app.screenshotUrls)
         
         outputScreenshotUrls
